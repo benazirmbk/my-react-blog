@@ -1,0 +1,46 @@
+.postItemWrapper {
+	margin-top: 3.125rem;
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+.postItem {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	background: #ffffff;
+	border: 1px solid #e5e8ed;
+	border-radius: 4px;
+	padding: 33px 40px;
+}
+
+.postItem h3 {
+	font-weight: 900;
+	font-size: 40px;
+	letter-spacing: 1px;
+	color: #ff3f3a;
+}
+
+.postItemText {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.postItemText strong {
+	font-weight: 700;
+	font-size: 20px;
+	color: #1e212c;
+}
+
+.postItemText p {
+	font-weight: 400;
+	font-size: 16px;
+	color: #787a80;
+	letter-spacing: 0.3px;
+}
+
+.postItemBtn {
+	display: flex;
+	gap: 10px;
+}

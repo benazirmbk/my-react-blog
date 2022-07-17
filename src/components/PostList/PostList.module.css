@@ -1,0 +1,10 @@
+.postListWrapper {
+	margin: 1.875rem 0 3.125rem 0;
+}
+
+.postTitle {
+	text-align: center;
+	font-weight: 900;
+	font-size: 30px;
+	color: #1e212c;
+}
