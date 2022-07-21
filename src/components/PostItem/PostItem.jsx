@@ -13,7 +13,7 @@ const PostItem = ({ post, index, deleted }) => {
 				</div>
 				<div className={styles.postItemBtn}>
 					<Button>Открыть</Button>
-					<Button onClick={deleted}>Удалить</Button>
+					<Button onClick={() => deleted(post)}>Удалить</Button>
 				</div>
 			</div>
 		</div>

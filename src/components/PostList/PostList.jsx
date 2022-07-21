@@ -10,7 +10,7 @@ const PostList = ({ posts, deleted }) => {
 					key={item.id}
 					post={item}
 					index={index + 1}
-					deleted={() => deleted(item.id)}
+					deleted={deleted}
 				/>
 			))}
 		</div>
