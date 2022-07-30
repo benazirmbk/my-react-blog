@@ -9,22 +9,34 @@ import PostService from './api/postService'
 
 import './style/App.css'
 import Spinner from './components/Loader/Loader'
-import { usePosts } from './components/hooks/usePosts'
+import { getCountPages } from './utils/utilsCountPages'
+import { useSortedPosts } from './components/hooks/usePosts'
 
 const App = () => {
 	const [posts, setPosts] = useState([])
 	const [filter, setFilter] = useState({ sort: '', query: '' })
 	const [activeModal, setActiveModal] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
-	const sortedAndSearchPosts = usePosts(posts, filter.sort, filter.query)
+	const sortedAndSearchPosts = useSortedPosts(posts, filter.sort, filter.query)
+	const [allPage, setAllPage] = useState(0)
+	const [limit, setLimit] = useState(10)
+	const [page, setPage] = useState(1)
+
+	const arrPages = []
+
+	for (let i = 0; i < allPage; i++) {
+		arrPages.push(i + 1)
+	}
 
 	useEffect(() => {
 		getAllPosts()
-	}, [])
+	}, [page])
 
 	async function getAllPosts() {
-		const data = await PostService.getAll()
-		setPosts(data)
+		const response = await PostService.getAll(limit, page)
+		setPosts(response.data)
+		const total = response.headers['x-total-count']
+		setAllPage(getCountPages(total, limit))
 		setIsLoading(true)
 	}
 
@@ -70,6 +82,15 @@ const App = () => {
 				) : (
 					<Spinner />
 				)}
+				{arrPages.map(page => (
+					<Button
+						onClick={() => setPage(page)}
+						key={page}
+						style={{ margin: '5px', maxWidth: '30px' }}
+					>
+						{page}
+					</Button>
+				))}
 			</div>
 		</div>
 	)
